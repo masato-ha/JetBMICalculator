@@ -68,7 +68,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .padding(20.dp)
                             .verticalScroll(rememberScrollState())
-                        ) {
+                    ) {
                         Text(
                             text = "BMI計算アプリ",
                             fontSize = 26.sp,
@@ -95,7 +95,7 @@ class MainActivity : ComponentActivity() {
 
                         //計算する
                         Button(
-                            onClick = {/*TODO*/ },
+                            onClick = {viewModel.calculateBMI() },
                             modifier = Modifier.fillMaxWidth(),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFFF85F6A)
@@ -112,7 +112,7 @@ class MainActivity : ComponentActivity() {
 
                         //結果表示テキスト
                         Text(
-                            text = "あなたのBMIは00.0です",
+                            text = "あなたのBMIは${viewModel.bmi}です",
                             modifier = Modifier.fillMaxWidth(),
                             textAlign = TextAlign.Center,
                             color = Color.Gray,
@@ -133,23 +133,23 @@ class MainActivity : ComponentActivity() {
         label: String,
         placeholder: String,
     ) {
-            Column {
-                Text(
-                    text = label,
-                    color = Color(0xFFF85F6A),
-                    fontWeight = FontWeight.Bold,
-                )
-                TextField(
-                    modifier = Modifier.fillMaxWidth(),
-                    value = value,
-                    onValueChange = onValueChange,
-                    colors = TextFieldDefaults.textFieldColors(
-                        containerColor = Color.Transparent
-                    ),
-                    placeholder = { Text(text = placeholder) },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                    singleLine = true,
-                )
-            }
+        Column {
+            Text(
+                text = label,
+                color = Color(0xFFF85F6A),
+                fontWeight = FontWeight.Bold,
+            )
+            TextField(
+                modifier = Modifier.fillMaxWidth(),
+                value = value,
+                onValueChange = onValueChange,
+                colors = TextFieldDefaults.textFieldColors(
+                    containerColor = Color.Transparent
+                ),
+                placeholder = { Text(text = placeholder) },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                singleLine = true,
+            )
         }
+    }
 }
